@@ -8,7 +8,62 @@ from kivymd.uix.button import MDFillRoundFlatIconButton, MDFillRoundFlatButton
 class PasswordCheckApp(MDApp):
     
     def check(self, args):
-        print("TEST")
+        password = self.input.text
+        res = "Password not supported"
+
+        if len(password) < 7:
+            res = "Too weak"
+
+        else:
+            if password.isdigit():
+                if len(password) < 12:
+                    res = "Too weak"
+                else:
+                    res = "Weak"
+
+            else:
+                if password.isalpha():
+                    if password.islower():
+                        if len(password) < 9:
+                            res = "Too weak"
+                        elif len(password) < 14:
+                            res = "Weak"
+                        elif len(password) < 18:
+                            res = "Good"
+                        else:
+                            res = "Very good"
+                    else:
+                        if len(password) < 12:
+                            res = "Weak"
+                        elif len(password) < 15:
+                            res = "Good"
+                        elif len(password) < 18:
+                            res = "Very good"
+                        else:
+                            res = "Perfect"
+                else:
+                    if any(c.isdigit() for c in password):
+                        if any(not c.isalnum() for c in password):
+                            if len(password) < 11:
+                                res = "Weak"
+                            elif len(password) < 13:
+                                res = "Good"
+                            elif len(password) < 16:
+                                res = "Very good"
+                            else:
+                                res = "Perfect"
+                        else:
+                            if len(password) < 11:
+                                res = "Weak"
+                            elif len(password) < 14:
+                                res = "Good"
+                            elif len(password) < 17:
+                                res = "Very good"
+                            else:
+                                res = "Perfect"
+
+        self.label.text = "Password strengh : " + res
+
 
     def build(self):
 
