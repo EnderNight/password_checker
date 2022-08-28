@@ -9,7 +9,7 @@ class PasswordCheckApp(MDApp):
     
     def check(self, args):
         password = self.input.text
-        res = "Password not supported"
+        res = "cannot check data for this password"
 
         if len(password) < 7:
             res = "Too weak"
@@ -81,18 +81,17 @@ class PasswordCheckApp(MDApp):
 
         # INPUT
         self.input = MDTextField(
-                text = "enter password",
-                halign = "center",
-                size_hint = (0.8, 1),
+                hint_text = "Enter password",
+                size_hint = (0.8, None),
                 pos_hint = {"center_x": 0.5, "center_y": 0.5},
-                font_size = 22
+                font_size = 60
                 )
         screen.add_widget(self.input)
 
         # BUTTON
         screen.add_widget(MDFillRoundFlatButton(
             text = "CHECK",
-            font_size = 17,
+            font_size = 60,
             pos_hint = {"center_x": 0.5, "center_y": 0.3},
             on_press = self.check
             ))
